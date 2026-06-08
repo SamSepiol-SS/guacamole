@@ -1,0 +1,17 @@
+{
+    "guacamoleVersion": "*",
+    "name": "Sam",
+    "namespace": "Sam",
+    "smallIcon" : "images/my-logo-s.png",
+    "largeIcon" : "images/my-logo-b.png",
+    "css": [ "css/branding.css" ],
+    "translations": [ "translations/en.json" ],
+    "resources" : {
+        "images/my-logo-b.png" : "image/png",
+        "images/my-logo-s.png" : "image/png",
+        "images/favicon.ico" : "image/x-icon"
+    },
+    "js": [
+    "favicon.js"]
+}
+

@@ -1,0 +1,15 @@
+.login-ui .login-dialog .logo {
+    background-image: url('/guacamole/app/ext/Sam/images/my-logo-b.png') !important;
+    width: 9em !important;
+    background-size: 9em auto !important;
+}
+
+div.login-ui {
+    background: #666 !important;
+    background-color: #666 !important;
+}
+
+.login-ui .login-dialog {
+    background-color: white !important;
+}
+
