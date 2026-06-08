@@ -35,6 +35,9 @@ services:
       POSTGRESQL_DATABASE: guacamole_db
       POSTGRESQL_USER: guacamole_user
       POSTGRESQL_PASSWORD: StrongGuacPass
+      GUACAMOLE_HOME: /opt/guacamole
+    volumes:
+      - custom-branding.jar:/opt/guacamole/extensions/custom-branding.jar
     ports:
       - "8081:8080"
     networks:
