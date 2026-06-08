@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:1.30
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/snippets:/etc/nginx/snippets:ro
+      - ./nginx/stream.d:/etc/nginx/stream.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - /var/log/nginx:/var/log/nginx
+    restart: unless-stopped
+    networks:
+      - workspace
+networks:
+  workspace:
+    name: guac-net
+    driver: bridge
