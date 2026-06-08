@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  guac-db:
+    image: postgres:16
+    container_name: guac-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: guacamole_db
+      POSTGRES_USER: guacamole_user
+      POSTGRES_PASSWORD: StrongGuacPass
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+      - ./init/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+    networks:
+      - workspace
+
+  guacd:
+    image: guacamole/guacd
+    container_name: guacd
+    restart: unless-stopped
+    networks:
+      - workspace
+
+  guacamole:
+    image: guacamole/guacamole
+    container_name: guacamole
+    restart: unless-stopped
+    depends_on:
+      - guacd
+      - guac-db
+    environment:
+      GUACD_HOSTNAME: guacd
+      POSTGRESQL_HOSTNAME: guac-db
+      POSTGRESQL_DATABASE: guacamole_db
+      POSTGRESQL_USER: guacamole_user
+      POSTGRESQL_PASSWORD: StrongGuacPass
+    ports:
+      - "8081:8080"
+    networks:
+      - workspace
+
+networks:
+  workspace:
+    name: guac-net
+    driver: bridge
